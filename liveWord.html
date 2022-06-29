@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="#">
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <link rel = "stylesheet" type = "text/css" href = "css.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body  style="background: rgb(213 217 236);">
+   <!--MENU LATERALE A COMPARSA-->
+   <div id="menu">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="info.html">ALCUNE INFORMAZIONI</a></li>
+      <li><a href="letters.html">MEMORIZZA L'ALFABETO</a></li>
+      <li><a href="liveLetter.html">METTITI ALLA PROVA</a></li>
+      <li><a href="liveWord.html">GIOCA!</a></li>
+    </ul>    
+   </div>
+  <h1 >VUOI AUMENTARE LA DIFFICOLTA'?</h1>
+  <h2 class="sottotitolo">Mettiti alla prova con un gioco a tempo!</h2>
+  <div id="quizButton">
+    <!--start quiz-->
+    <button id="start" class="bluebutton" onclick="startQuiz();">INIZIA SUBITO</button>
+    <!--istruzioni-->
+    <button id="istruzioni" class="bluebutton" onclick="showInstructions();">COME SI GIOCA?</button>
+    <!--setta velocita-->
+    <div id="velox" class="bluebutton" onclick="changeVelox()"><h2>SCEGLI LA DIFFICOLTA':</h2><br/>
+      <input type="radio" id="level1" name="level" checked="checked" >
+      <label for="level1">FACILE</label><br>
+      <input type="radio" id="level2" name="level">
+      <label for="level2"> INTERMEDIA </label><br>
+      <input type="radio" id="level3" name="level">
+      <label for="level3"> DIFFICILE</label><br>
+    </div>
+    </div>
+  <div class="container">
+    <video id="input_video" style="display:none"></video>
+    <div id="float">
+      <div id="letterDiv1"></div>
+      <canvas id="output_canvas1" width="622px" height="415px"></canvas>
+       <!--timer-->
+      <div id="timer" style="display:none">
+        Secondi restanti:<input id="seconds" type="text">
+      </div>
+      <!--nascosto-->
+      <div id="imgDiv" style="display:none">
+        <div class="mySlides fade">
+          <img src="imgs/ny.jpg" style="width:100%">
+          <div class="text">NEWYORK</div>
+        </div>
+      
+        <div class="mySlides fade">
+          <img src="imgs/obama.png" style="width:100%">
+          <div class="text">OBAMA</div>
+        </div>
+      
+        <div class="mySlides fade">
+          <img src="imgs/ikea.jpg" style="width:100%">
+          <div class="text">IKEA</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/brie.jpg" style="width:100%">
+          <div class="text">BRIE</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/netflix.jpg" style="width:100%">
+          <div class="text">NETFLIX</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/bmw.jpg" style="width:100%">
+          <div class="text">BMW</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/rihanna.jpg" style="width:100%">
+          <div class="text">RIHANNA</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/twitter.png" style="width:100%">
+          <div class="text">TWITTER</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/wifi.jpg" style="width:100%">
+          <div class="text">WIFI</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/roma.jpg" style="width:100%">
+          <div class="text">ROMA</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/milan.jpg" style="width:100%">
+          <div class="text">MILAN</div>
+        </div>
+        <div class="mySlides fade">
+          <img src="imgs/tacos.jpg" style="width:100%">
+          <div class="text">TACO</div>
+        </div>
+
+
+        <div style="text-align:center">
+          <span class="dot" id="dot1" onclick="currentSlide(1); emptyWord();"></span>
+          <span class="dot" id="dot2" onclick="currentSlide(2);  emptyWord();"></span>
+          <span class="dot" id="dot3" onclick="currentSlide(3);  emptyWord();"></span>
+          <span class="dot" id="dot4" onclick="currentSlide(4);  emptyWord();"></span>
+          <span class="dot" id="dot5" onclick="currentSlide(5);  emptyWord();"></span>
+          <span class="dot" id="dot6" onclick="currentSlide(6);  emptyWord();"></span>
+          <span class="dot" id="dot7" onclick="currentSlide(7);  emptyWord();"></span>
+          <span class="dot" id="dot8" onclick="currentSlide(8);  emptyWord();"></span>
+          <span class="dot" id="dot9" onclick="currentSlide(9);  emptyWord();"></span>
+          <span class="dot" id="dot10" onclick="currentSlide(10);  emptyWord();"></span>
+          <span class="dot" id="dot11" onclick="currentSlide(11);  emptyWord();"></span>
+          <span class="dot" id="dot12" onclick="currentSlide(12);  emptyWord();"></span>
+        </div>
+      </div>
+      <!--se click su mostra risultato-->
+      <div id="risultatoFinale" style="display:none">
+        <h2>HAI SCRITTO CORRETTAMENTE </h2>
+        <h2 id="score"></h2><h2>PAROLE SU 12...</h2>
+        <p id="commento"></p>
+        <button onclick="javascript:location.reload(false);">TORNA ALLA PAGINA INIZIALE<br/>DEL GIOCO</button>
+      </div>
+       <!--se click su mostra istruzioni-->
+      <div id="istruzioniAll" style="display:none">
+        <h2>OBIETTIVO DEL GIOCO:</h2>
+        <p>Scrivere correttamente quante più parole corrispondenti alle immagini mostrate nella gallery, entro il tempo messo a disposizione.</p>
+        <h2>QUANTO E' IL TEMPO A DISPOSIZIONE?</h2>
+        <p>Cambia in base al livello di difficoltà: 45 secondi se facile, 35 se intermedio e 25 se difficile.</p>
+        <h2>COME SI SCRIVE UNA PAROLA?</h2>
+        <p>Basta inquadrarsi con la webcam e fare lo spelling manuale lettera per lettera, controllando via via che la parola venga scritta correttamente.</p>
+        <h2>E SE NON CAPISCO COSA E' RAFFIGURATO NELL'IMMAGINE?</h2>
+        <p>Sarà sufficiente cliccare sull'icona del punto di domanda perchè venga mostrata la caption dell'immagine.</p>
+        <span id="indietro" class="material-symbols-outlined" onclick="back();">undo</span>
+      </div>
+    </div>
+
+
+</div>
+ <!--nascosto-->
+<div id="disappear" style="display:none">
+  <div id="pop" class="popup" onclick="pop()"><i class="material-icons" id="qmark" style="font-size:36px;">help</i><span class="popuptext" id="myPopup">Non sei sicuro di aver capito che parola scrivere? <a id="caption" href="#" onclick="mostraCaption();">Mostra la caption</a></span></div>
+  <div id="parolaDiv"></div>
+  <div id="buttonFloat">
+    <button id="delete" class="bluebutton">CANCELLA LETTERA </button><br/>
+    <button id="reset" class="bluebutton">CANCELLA PAROLA</button><br/>
+    <!--<a id="skip"  onclick="plusSlides(1); emptyWord();"> SALTA</a>-->
+  </div>
+</div>
+<a id="next"  onclick="plusSlides(1); emptyWord();"> PROSSIMA IMMAGINE &#10095;</a> 
+</body>
+<footer>Progetto a cura di Alice Vitali - Tesi di Laurea Triennale in Informatica Umanistica (a.s. 2021/2022)</footer>
+</html>
+
+<!--SCRIPT JS-->
+<script>
+const videoElement = document.getElementById('input_video');
+const canvasElement = document.getElementById('output_canvas1');
+const canvasCtx = canvasElement.getContext('2d');
+//lettera mostrata sul canvas
+const letterDiv = document.getElementById("letterDiv1");
+//scrivi parola
+var tries4oneletter = [];
+const parolaDiv = document.getElementById("parolaDiv");
+//bottoni per agire su parola
+const resetB = document.getElementById("reset");
+const deleteB = document.getElementById("delete");
+//buttons quiz
+const quizButton = document.getElementById("quizButton");
+const start = document.getElementById("start");
+//question mark con popup
+const icon = document.getElementById("qmark");
+//elementi da far comparire e scomparire
+const imgDiv = document.getElementById("imgDiv");
+const disappear = document.getElementById("disappear");
+const next = document.getElementById("next");
+//const skip = document.getElementById("skip");
+//risultato finale
+const risultatoFinale = document.getElementById("risultatoFinale");
+const score = document.getElementById("score");
+const commento = document.getElementById("commento");
+//elemento istruzioni da far comparire
+const indietro = document.getElementById("indietro");
+const istruzioniAll = document.getElementById("istruzioniAll");
+//TIMER (GEEKS FOR GEEKS inspired)
+const timer = document.getElementById("timer");
+//set seconds
+const level1 = document.getElementById("level1");
+const level2 = document.getElementById("level2");
+const level3 = document.getElementById("level3");
+var facile = 40;
+var intermedio = 30;
+var difficile = 20;
+var secs;
+//list of class names
+const classNames =  ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'T', 'U', 'V', 'W', 'X', 'Y'];
+
+
+/*********************LOAD MEDIAPIPE AND VIDEO********************************/
+//svuota parolaDiv
+function emptyWord(){
+  if (parolaDiv.hasChildNodes()) {
+      while (parolaDiv.firstChild) {
+          parolaDiv.removeChild(parolaDiv.firstChild);
+      }
+    }
+}
+
+//trova lettera più frequente per scriverla in parolaDiv
+function mostFreqLett(arr, num){
+  var res = 0;
+  var count = 1;
+  for(var i = 1; i < num; i++) {
+      if(arr[i] == arr[res]) {
+          count++;
+      } else {
+          count--;
+      }
+        
+      if(count == 0) {
+          res = i;
+          count = 1;
+      }
+        
+  }
+    
+  return arr[res];
+}
+
+//funzione on results (draw + letterDiv + parolaDiv)
+function results(results) {
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+  const emptyDetection = [];
+  //SE NON SI VEDE LA MANO
+  if (results.multiHandLandmarks.length == 0) {
+      console.log("no detections!!");
+      if (letterDiv.hasChildNodes()) {
+      letterDiv.removeChild(letterDiv.firstChild);
+    }
+  }
+    //SE INVECE SI VEDE LA MANO
+  else {
+    letterDiv.style.display= "block";
+    for (const landmarks of results.multiHandLandmarks) {
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                      {color: 'indigo', lineWidth: 5});
+      drawLandmarks(canvasCtx, landmarks, {color: 'blue', lineWidth: 2});
+      var all = [] 
+      for (const land of landmarks) {
+        //land è un singolo landmark dei 21 con 3 coord
+        //console.log(land);
+        const coords = Object.values(land);
+        //pop visibility, always 0
+        coords.pop();
+        //console.log(coords);
+        all.push(coords);
+      }
+    //matrice di 63 (tutti 21 landmarks di una immagine, 3 coords ognuno )
+    const matrix= all.flat(1);
+    //expand dim
+    const tensor = tf.expandDims(matrix, 0);
+    //predict with my letter model
+    const myresult = mymodel.predict(tensor);
+    var predictedValue = myresult.arraySync()[0];
+    //get highest index between predictions
+    const best = tf.argMax(predictedValue);
+    //map highest index with corresponding letter
+    const letter = best.arraySync();
+    //voilà!
+    var lett = classNames[letter];
+    
+    if (letterDiv.hasChildNodes()) {
+      letterDiv.removeChild(letterDiv.firstChild);
+    }
+    //SHOW LETTER OVER CANVAS
+    letterDiv.append(lett);
+    //AFTER 50 DETECTIONS, CHOOSE MOST SEEN LETTER AND WRITE IT
+    tries4oneletter.push(lett);
+    if (tries4oneletter.length >= 45 ) {
+      var n = tries4oneletter.length / tries4oneletter[0].length;
+      var risultato = mostFreqLett(tries4oneletter, n)
+      const resNode = document.createTextNode(risultato);
+      parolaDiv.style.border = "5px solid black";
+      parolaDiv.appendChild(resNode);
+      tries4oneletter = [];
+      checkWord();
+    }
+  }
+  canvasCtx.restore();
+  }
+}
+
+  
+  
+const hands = new Hands({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+}});
+hands.setOptions({
+  maxNumHands: 1,
+  modelComplexity: 1,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+ 
+hands.onResults(results);
+  
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await hands.send({image: videoElement});
+  },
+  width: 622,
+  height: 415,
+});
+camera.start();
+  
+let mymodel;
+videoElement.addEventListener("loadeddata", async () => {
+  mymodel = await tf.loadLayersModel("https://raw.githubusercontent.com/Vitalicecila/TENSORmodel/main/model.json");
+  console.log(mymodel);   
+});
+  
+//RESET E CANCELLA (BOTTONI CHE AGISCONO SU PAROLADIV)
+
+//al click del button reset
+resetB.addEventListener('click', function() {
+    parolaDiv.style.border = "5px solid black";
+    emptyWord();
+    if (letterDiv.hasChildNodes()) {
+      while (letterDiv.firstChild) {
+          letterDiv.removeChild(letterDiv.firstChild);
+      }
+    }
+  });
+
+//al click del tasto cancella ULTIMA LETTERA
+deleteB.addEventListener('click', function() {
+    parolaDiv.style.border = "5px solid black";
+    if (parolaDiv.hasChildNodes()) {
+      parolaDiv.removeChild(parolaDiv.lastChild);
+    }
+  });
+
+/************************ IMAGE SLIDER *****************************/
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  //se sono all'ultima immagine
+  if (n == slides.length) {
+    next.innerHTML = "MOSTRA RISULTATO";
+  }
+  //se sono oltre l'ultima immagine
+  if (n > slides.length) {
+    //mostra risultati quiz
+    disappear.style.display = "none";
+    risultatoFinale.style.display = "block";
+    imgDiv.style.display = "none";
+    timer.style.display = "none";
+    score.innerHTML = startingPoints;
+    if (score.innerHTML < 5) {
+      commento.innerHTML = "PUOI SICURAMENTE FARE DI MEGLIO!";
+
+    } else if (5 <= score.innerHTML <= 8) {
+      commento.innerHTML = "NIENTE MALE, LA STRADA E' QUELLA GIUSTA!";
+
+    } else if (9 <= score.innerHTML <= 12) { 
+      commento.innerHTML = "COMPLIMENTI, L'ALFABETO MANUALE NON HA PIU' SEGRETI PER TE!";
+    }
+  }
+  if (n < 1) {slideIndex = slides.length}
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  if (slideIndex != 0 || slideIndex != 13 ) {
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  }
+}
+
+    
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next button (prossima immagine)
+function plusSlides(n) {
+  parolaDiv.style.border = "5px solid black";
+  disappear.style.display = "block";
+  next.style.display = "none";
+  showSlides(slideIndex += n);
+  countdown();
+
+}
+
+/****************************** parte a tempo *************************************/
+//mostra istruzioni
+function showInstructions() {
+  istruzioniAll.style.display = "block";
+  quizButton.style.display = "none";
+}
+//tasto indietro 
+function back() {
+  istruzioniAll.style.display = "none";
+  quizButton.style.display = "block";
+}
+
+//mostra quiz
+function startQuiz() {
+  quizButton.style.display= "none";
+  imgDiv.style.display= "block";
+  if (parolaDiv.hasChildNodes()) {
+      while (parolaDiv.firstChild) {
+          parolaDiv.removeChild(parolaDiv.firstChild);
+      }
+    }
+  disappear.style.display = "block";
+  countdown();
+};
+
+function countdown() {
+    timer.style.display = "block";
+    //controlla checkbox
+    if (level1.checked) {
+      secs = facile;
+    } else if (level2.checked) {
+      secs = intermedio;
+    } else if (level3.checked) {
+      secs = difficile;
+    }
+    //1000 ms in 1 secondo
+    setTimeout('Decrement()', 1000);
+}
+
+//Decrement function decrement the value.
+function Decrement() {
+  if (document.getElementById) {
+    seconds = document.getElementById("seconds");
+    seconds.value = secs;
+  }
+  //red when less than 10 seconds
+  if (secs <= 10) {
+      seconds.style.color = "red";
+  }
+  //if seconds becomes zero
+  if (secs <= 0) {
+    countANDnext();
+  }
+  //if seconds > 0 then seconds is decremented
+  else {
+      secs--;
+      //1000 ms in 1 secondo
+      setTimeout('Decrement()', 1000);
+  }
+}
+function countANDnext() {
+  if (parolaDiv.style.border = "5px solid green") {
+    disappear.style.display = "none";
+    emptyWord();
+    next.style.display = "block";
+    secs = 0;   
+  }
+}
+
+
+//funzione per controllare se la parola scritta è uguale a caption
+function checkWord() {
+  const allImages = document.getElementsByClassName("mySlides");
+  const allTexts = document.getElementsByClassName("text");
+  //scelgo quella che si vede
+  for (var i = 0; i < allImages.length; i++) {
+    if (allImages[i].style.display == "block") {
+      //di quella prendo caption e controllo se uguale a parola sotto
+      if (allTexts[i].innerHTML == parolaDiv.innerHTML) {
+        parolaDiv.style.border = "5px solid green";
+        countPoints(1);
+        setTimeout('countANDnext()', 1200);
+      } else {
+        parolaDiv.style.border = "5px solid red";
+      }
+    
+    }
+  }
+}
+
+var startingPoints = 0;
+function countPoints(n) {
+  if ( n==1 ) {
+    startingPoints++;
+    console.log(startingPoints);
+  }
+}
+
+
+
+/*********************** POP UP ****************************/
+function pop() {
+  var popup = document.getElementById("myPopup");
+  
+  popup.classList.toggle("show");
+}
+
+//mostra caption immagini gallery al click di qmark
+function mostraCaption() {
+  //prendo tutte le immagini
+  const allImages = document.getElementsByClassName("mySlides");
+  const allTexts = document.getElementsByClassName("text");
+  console.log(allImages );
+  //scelgo quella che si vede
+  for (var i = 0; i < allImages.length; i++) {
+    console.log(allImages[i].style.display);
+    if (allImages[i].style.display == "block") {
+      //di quella mostro la relativa caption
+      console.log(allTexts[i]);
+      allTexts[i].style.display = "block";
+    } 
+  }
+  
+
+}
+
+/********************* stampo confusion matrix...**********************************/
+/*
+const output = tf.math.confusionMatrix(lab, pred, classNames);
+
+function transformImages() {
+  //ciclo su tutti file test directory
+  //li trasfromo tutti con mediapipe
+  //predico su ciascuno con modello
+  //mi salvo la lista delle predizioni
+  mymodel.predict(tensor);
+}
+
+function realLables()
+  //lisa di tutte le lables giuste da dir test
+  */
+</script>

@@ -1,0 +1,1105 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cabin+Sketch:wght@700&family=Chakra+Petch:wght@300&family=Fascinate&family=Fredericka+the+Great&family=Fredoka+One&family=Prompt&display=swap');
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Chakra Petch', sans-serif;
+}
+a,
+a:link,
+a:visited,
+a:active{
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Chakra Petch', sans-serif;
+    color: rgb(45, 79, 173);
+}
+a:hover {
+  color: #b41f1f;
+}
+
+
+.toggle {
+    color: #dadada;
+}
+
+.toggle:link {
+    text-decoration: none;
+}
+
+#menu {
+  top:0;
+  height: 50px;
+  background-color: rgb(127, 155, 231);
+  font-weight: bold;
+}
+
+#menu ul {
+  margin-bottom: 7%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#menu li {
+  float: left;
+}
+
+#menu li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+}
+
+#menu li a:hover {
+  background-color: rgb(58, 91, 181);;
+  color: #b41f1f;
+}
+/**HOMEPAGE**/
+
+#homepageTitle {
+  font-family: 'Anton', sans-serif;
+    font-size: 400%;
+  margin-left: 15%;
+   margin-right: 15%;
+  margin-top:5%;
+}
+#homepageBody {
+    background:rgb(191, 198, 237);
+}
+
+.section {
+  margin-top: 9%;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.section a span {
+    position: absolute;
+    top: 450;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -12px;
+    border-left: 4px solid #b41f1f;
+    border-bottom: 4px solid #b41f1f;;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: sdb07 2s infinite;
+    animation: sdb07 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.section a span:nth-of-type(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+  }
+.section a span:nth-of-type(2) {
+    top: 465px;
+    -webkit-animation-delay: .15s;
+    animation-delay: .15s;
+  }
+  .section a span:nth-of-type(3) {
+    top: 480px;
+    -webkit-animation-delay: .3s;
+    animation-delay: .3s;
+  }
+  @-webkit-keyframes sdb07 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes sdb07 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  
+#nextSection  {
+ margin-top: 20%;
+}
+#nextSection div {
+  margin-bottom: 8%;
+  display: inline-block;
+  width:15%;
+  margin-left: 2%;
+  padding: 3%;
+  border: 5px solid #40409f;
+  font-size: 110%;
+  font-weight: bold;
+  color:  #40409f;
+  padding-right: 15%;
+  font-family: 'Chakra Petch', sans-serif;
+  background-color: white;
+
+}
+
+.click:hover {
+  text-decoration: underline;
+  color: #b41f1f;
+}
+
+#sec1 {
+  background-image: url("imgs/confused.png");
+  background-size: 40%;
+  background-position: right;
+  background-repeat: no-repeat;
+  transform: translateY(23px);
+}
+#sec2 {
+  background-image: url("imgs/blocks.png");
+  background-size: 40%;
+  background-position: right;
+  background-repeat: no-repeat;
+  transform: translateY(23px);
+}
+#sec3 {
+  background-image: url("imgs/muscle.png");
+  background-size: 35%;
+  background-position: right;
+  background-repeat: no-repeat;
+  transform: translateY(-40px);
+}
+#sec4 {
+  background-image: url("imgs/goal.png");
+  background-size: 35%;
+  background-position: right;
+  background-repeat: no-repeat;
+  transform: translateY(-40px);
+}
+
+
+
+/** PAGINA INFO **/
+#infoTitle {
+  margin-top: 3%;
+  font-size: 220%;
+}
+.explain {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: bold;
+}
+
+#allInfo {
+ text-align: center;
+ padding-bottom: 0.5%;
+}
+
+
+.info {
+   background-color:  white; 
+  width: 100%;
+  padding: 6%;
+  margin-top: 3%;
+ 
+}
+
+.info p {
+  
+margin-right: 15%;
+  margin-left: 15%;
+  font-size: 120%;
+  padding: 1%;
+  border-left: 4px solid #ac4040 ;
+}
+
+.infoimgs{
+  margin-top: -10%;
+  width: 13%;
+}
+#infoImg1, #infoImg3  {
+    margin-left: 70%;
+}
+#infoImg2, #infoImg4{
+    margin-left: -90%;
+}
+
+.info h2 {
+  margin-top: -4%;
+  color:  #ac4040;
+  font-weight: bold;
+  font-size: 190%;
+  
+}
+.infoContainer {
+  margin-bottom: 8%;
+}
+
+#clicca {
+  font-family: 'Chakra Petch', sans-serif;
+  position: absolute;
+  margin-top: -8%;
+  margin-left: 11%;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+#genera:hover + #clicca {
+  display: block;
+  color: white;
+}
+
+/** CARDS FLIPPABILI **/
+
+#container_stili {
+  margin-left: 10%;
+  padding-bottom: 12%;
+}
+
+
+/* The flip card container*/
+
+.flip-card {
+    float: left;
+    margin-top: 2%;
+    padding: 3%;
+    width: 180px;
+    height: 180px;
+    perspective: 1000px;
+    /* Remove this if you don't want the 3D effect */
+}
+
+/* front*/
+
+#f1 {
+    background:  #7c0303;
+    background-size: 400% 400%;
+}
+
+#f2 {
+    background: #c4421e;
+    background-size: 400% 400%;
+}
+#f3 {
+    background:  #d8ab24;
+    background-size: 400% 400%;
+}
+#f4 {
+    background:  #b6de50;
+    background-size: 400% 400%;
+}
+#f5 {
+    background: #55c339;
+    background-size: 400% 400%;
+}
+#f6 {
+    background: #338e1c;
+    background-size: 400% 400%;
+}
+#f7 {
+    background: #135503;
+    background-size: 400% 400%;
+}
+#f8 {
+    background: #0c5467;
+    background-size: 400% 400%;
+}
+#f9 {
+    background: #4499ba;
+    background-size: 400% 400%;
+}
+#f10 {
+ 
+    background: #87c6de;
+    background-size: 400% 400%;
+}
+#f11 {
+    background: #4f7fe6;
+    background-size: 400% 400%;
+}
+#f12 {
+    background: #1e4bad;
+    background-size: 400% 400%;
+}
+#f13 {
+    background: #210575;
+    background-size: 400% 400%;
+}
+#f14 {
+    background: #4d27a6;
+    background-size: 400% 400%;
+}
+#f15 {
+    background: #6b1d95;
+    background-size: 400% 400%;
+}
+#f16 {
+    background: #b066d7;
+    background-size: 400% 400%;
+}
+#f17 {
+    background: #d6a2d9;
+    background-size: 400% 400%;
+}
+#f18 {
+    background: #c27794;
+    background-size: 400% 400%;
+}
+#f19 {
+    background: #af2057;
+    background-size: 400% 400%;
+}
+#f20 {
+    background: #730e35;
+    background-size: 400% 400%;
+}
+#f21 {
+    background: #370202;
+    background-size: 400% 400%;
+}
+#f22 {
+    background: #120000;
+    background-size: 400% 400%;
+}
+
+/* needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/*  horizontal flip on mouse over */
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+
+/* Position the front and back side */
+
+.flip-card-front,
+.flip-card-back {
+    box-shadow: 5px 10px 8px #888888;
+    border-radius: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+
+/* front side (fallback if image is missing) */
+
+.flip-card-front {
+    background-color: #bbb;
+    color: whitesmoke;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-card-front h1 {
+  font-family:  'Anton', sans-serif;
+    color: whitesmoke;
+  font-size: 550%;
+  font-weight: bold;
+    margin-top: 3%;
+}
+
+
+/* back side */
+
+.flip-card-back {
+    background-color: whitesmoke;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.flip-card-back p {
+    margin-right: 3%;
+}
+
+/*IMMAGINI BACK*/
+#b1 {
+    background-image: url("imgs/a.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+
+
+#b2 {
+    background-image: url("imgs/b.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+
+#b3 {
+    background-image: url("imgs/c.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+
+#b4 {
+    background-image: url("imgs/d.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b5 {
+    background-image: url("imgs/e.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b6 {
+    background-image: url("imgs/f.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b7 {
+    background-image: url("imgs/h.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b8 {
+    background-image: url("imgs/i.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b9 {
+    background-image: url("imgs/k.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b10 {
+    background-image: url("imgs/l.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b11 {
+    background-image: url("imgs/m.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b12 {
+    background-image: url("imgs/n.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b13 {
+    background-image: url("imgs/o.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b14 {
+    background-image: url("imgs/p.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b15 {
+    background-image: url("imgs/q.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b16 {
+    background-image: url("imgs/r.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b17 {
+    background-image: url("imgs/t.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b18 {
+    background-image: url("imgs/u.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b19 {
+    background-image: url("imgs/v.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b20 {
+    background-image: url("imgs/w.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b21 {
+    background-image: url("imgs/x.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+#b22 {
+    background-image: url("imgs/y.JPG");
+    background-size: 160%;
+    background-position: 50%; 
+}
+
+#shuffle {
+    margin-bottom: 5%;
+}
+
+/**/
+
+.titSt {
+    
+    transform: translateY(25px);
+    font-size: 500%;
+
+}
+
+#titoloStili  {
+    margin-top: 3%;
+    font-size: 200%;
+    font-weight: bold;
+    color: rgb(58, 91, 181);
+}
+
+
+
+.es {
+  font-family: 'Chakra Petch', sans-serif;
+    color:  rgb(58, 91, 181);
+   font-weight: bold;
+    margin-right:5%;
+    width: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#bubbleContainer {
+  display:block;
+  margin-right: 12%;
+}
+#bubbleContainer button {
+  padding: 1%;
+  margin-top: 5%;
+  width: 15%;
+}
+
+
+/*PAGINA CONTROLLA SINGOLA LETTERA*/
+
+#output_canvas{
+    transform: scaleX(-1);
+    z-index: -1;
+    width: 80%;
+    margin-left: 25%;
+}
+
+  
+#targetDiv{
+  min-width: 125px;
+  
+   font-family: 'Anton', sans-serif;
+    border: 5px solid black;
+    font-size: 500%;
+    margin-top: 10%;
+   margin-left: -60%;
+    width: 50%;
+    height: 50%;
+  background-color: white;
+ 
+  
+}
+
+#letterDiv {
+ font-family: 'Anton', sans-serif;
+  min-width: 125px;
+  min-height: 125px;
+    border: 5px solid black;
+    font-size: 500%;
+    margin-top: 25%;
+   margin-left: -60%;
+    width: 50%;
+    height: 50%;
+  background-color: white;
+}
+
+.material-symbols-outlined {
+  margin-top: -7%;
+  position: absolute;
+  font-size: 320%;
+  cursor: pointer;
+}
+
+#done {
+  margin-top:  6%; 
+  margin-left: 5%;
+  color: green;
+  font-weight: bold;
+  display: none;
+}
+
+#wrong {
+  margin-top:  6%;
+    margin-left: 5%;
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
+#sxContainer{
+  float: left;
+}
+#dxContainer{
+  float: right;
+  margin-top: 1%;
+  margin-right: 17%;
+}
+#sxContainer{
+  float: left;
+  margin-left: 10%;
+  
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  font-weight: bold;
+  color:  rgb(58, 91, 181);
+  margin-top: 1%;
+  font-size: 170%;
+}
+
+
+h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: bold;
+  color:  rgb(45, 79, 173);
+  margin-top: 1%;
+  font-size: 120%;
+  margin-bottom: 1%;
+}
+
+/*pagina scrittura PAROLA*/
+
+#buttonFloat {
+  margin-right: -30%;
+  margin-top: -7.5%;
+  display: block;
+}
+.bluebutton {
+  margin-top: 0.5%;
+  padding: 0.5%;
+  border-radius: 20%;
+  background-color: rgb(127, 155, 231);
+  color: white;
+  border: none;
+  font-size: 100%;
+}
+/*
+#skip {
+  font-weight: bold;
+  margin-top: -10%;
+  margin-left: -5%;
+  border: none;
+  position: absolute;
+  text-decoration: underline;
+  background: inherit;
+  
+}
+*/
+#skip:hover {
+  color: #b41f1f;
+}
+.bluebutton:hover{
+  color: #b41f1f;
+  background-color: rgb(58, 91, 181);
+}
+#output_canvas1{
+  float: left;
+  margin-left: 10%;
+  transform: scaleX(-1);
+  margin-top: 4%;
+  width: 40%;
+  min-width: 40%;
+  max-width: 40%;
+  border: 5px solid black;
+}
+
+  
+#letterDiv1 {
+  position:absolute;
+  font-size: 100px;
+  margin-top: 3%;
+  margin-left:12%;
+  z-index: 100;
+  color: #b41f1f;
+  -webkit-text-stroke: 5px black;
+  font-family: 'Anton', sans-serif;
+}
+  
+#imgDiv {
+  border: 4px solid black;
+  border-radius: 3%;
+  float:right;
+  width: 27%;
+  margin-top: 5%;
+  margin-right: 15%;
+  margin-bottom: 1%;
+}
+
+#parolaDiv {
+  overflow:hidden;
+  display: inline-block;
+  border: 4px solid black; 
+  border-radius: 3%; 
+  min-height: 60px;
+  min-height: 60px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  min-width: 284px;
+  font-size: 40px;
+  margin-left: -8%;
+  max-width: 284px;
+  margin-top: 0.5%;
+  background-color: white;
+  font-family: 'Anton', sans-serif;
+}  
+
+#doneBis {
+  color:green;
+  font-size: 60px;
+  margin-top: 3%;
+  margin-left: -15%;
+  display: none;
+}
+#wrongBis {
+  color:red;
+  font-size: 60px;
+  margin-top: 3%;
+  margin-left: -15%;
+  display: none;
+}
+.sottotitolo  {
+   font-family: 'Chakra Petch', sans-serif;
+  margin-top: -1.5%;
+  margin-bottom: -2%;
+  font-weight: bold;
+}
+#sottotitoloLettera {
+  font-size: 120%;
+  margin-bottom: 2%;
+}
+.mySlides img {
+    max-height: 175px;
+}
+.mySlides {display: none}
+
+
+
+/* Next & previous buttons */
+#next {
+  cursor: pointer;
+  position: absolute;
+  top: 72%;
+  padding: 15px;
+  margin-right: 20%;
+  border-radius: 5%;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 3px 3px 3px 3px;
+  user-select: none;
+  background-color: rgba(0,0,0,0.8);
+  animation: pulse 1.5s infinite;
+  right: 0;
+  border-radius: 3px 3px 3px 3px;
+  display: none;
+}
+
+/* Caption text */
+.text {
+  font-family: 'Chakra Petch', sans-serif;
+  color: #f5f0f0;
+  background-color: #55555580; 
+  font-weight: bold; 
+  font-size: 150%;
+  position: absolute;
+  border-radius: 5%;
+  margin-top:-14%;
+  padding: 0.5%;
+  display: none;
+  
+}
+a#caption, a#caption:after {
+  color: #b41f1f;
+}
+
+a#caption:hover {
+  text-decoration: underline;
+}
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+#qmark {
+  transform: translateY(150px);
+  margin-right: -2400%;
+  
+  cursor: pointer;
+}
+
+
+#titoloAlto {
+  margin-bottom: 4%;
+  margin-top: 2%;
+ 
+}
+
+
+/*POPUP*/
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 130px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: -260%;
+    margin-left: 820px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 20%;
+    transform: rotate(360deg);
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+#quizButton button {
+  width: 47%;
+  height: 150px;
+  font-size: 150%;
+  padding: 6%;
+  animation: pulse 1.5s infinite;
+}
+ #quizButton div {
+   width: 120%;
+   margin-left: -10%;
+   font-weight: bold;
+   margin-top: 5%;
+   padding-top: 8%;
+   padding-bottom: 8%;
+   animation: none;
+ }
+ #quizButton div:hover {
+  background-color: rgb(127, 155, 231);
+  color: white;
+ }
+#quizButton input {
+  margin-top: 2.5%;
+}
+#velox h2 {
+  color:white;
+  margin-bottom: -2%;
+}
+#quizButton {
+  font-family: 'Chakra Petch', sans-serif;
+  position:absolute;
+  margin-top: 4%;
+  margin-left: 58%;
+}
+#start {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+#timer {
+  transform: translate(-40px, 40px);
+  font-size: 120%;
+  font-family: 'Chakra Petch', sans-serif;
+  margin-bottom: -1%;
+  display: block;
+  width:100%;
+}
+
+#seconds {
+  width: 40px;
+  border: none;
+  background: none;
+  font-size: 150%;
+  font-weight: bold;
+  color: black;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(.9);
+  }
+  70% {
+   transform: scale(1);
+    box-shadow: 0 0 0 50px rgba(#5a99d4, 0);
+  }
+    100% {
+    transform: scale(.9);
+    box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
+  }
+}
+
+
+#istruzioniAll {
+  margin-top: 0.5%;
+   position: absolute;
+  margin-left: 50%;
+  padding: 4%;
+  width: 40%;
+  
+}
+#istruzioniAll h2 {
+ 
+  font-weight: 5em;
+  margin-bottom: -2.3%;
+  text-align: left;
+   background: rgb(173 191 238);
+}
+#istruzioniAll p {
+  text-align: left;
+  PADDING: 0.5%;
+  border-radius: 10%;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: bold;
+  font-size:90%;
+  
+}
+#istruzioniAll button {
+  color: white;
+  
+  border-radius: 10%;
+  background: rgba(0,0,0,0.8);
+}
+
+#risultatoFinale {
+  position: absolute;
+  margin-left: 55%;
+  padding: 3%;
+  margin-top: 5%;
+  width: 30%;
+  background: white;
+  border: 5px solid rgb(58, 91, 181);
+}
+
+#indietro {
+  color: rgb(58, 91, 181);
+  font-sizE: 50px;
+  position: absolute;
+  margin-left: 42%;
+  margin-top: -73%;
+}
+#risultatoFinale button {
+  color: white;
+  padding: 2%;
+  border-radius: 3%;
+ background: rgba(0,0,0,0.8);
+}
+
+#score {
+  font-family: 'Chakra Petch', sans-serif;
+  color: #b41f1f;
+  font-size: 250%;
+}
+#commento {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: bold;
+  color: #b41f1f;
+}
+/*FOOTER*/
+
+footer {
+   
+    background-color: rgb(127, 155, 231);
+    color: white;
+    padding: 1.5%;
+    font-size: 1em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Chakra Petch', sans-serif;
+}
+    
+

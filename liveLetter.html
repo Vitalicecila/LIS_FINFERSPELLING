@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="#">
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  
+  <link rel = "stylesheet" type = "text/css" href = "css.css">
+</head>
+
+<body  style="background:rgb(213 217 236);">
+   <!--MENU LATERALE A COMPARSA-->
+   <div id="menu">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="info.html">ALCUNE INFORMAZIONI</a></li>
+      <li><a href="letters.html">MEMORIZZA L'ALFABETO</a></li>
+      <li><a href="liveLetter.html">METTITI ALLA PROVA</a></li>
+      <li><a href="liveWord.html">SCRIVI PAROLE INTERE</a></li>
+    </ul>   
+   </div>
+  <h1 id="liveLetterTitle">TI RICORDI COME SI FA? </h1>
+  <h1 class="sottotitolo" id="sottotitoloLettera">Replica con la mano la lettera mostrata nel primo riquadro </h1>
+  <div class="container">
+    <video id="input_video" style="display:none"></video>
+    <div id="float">
+      <div id="dxContainer">
+
+        <div id="targetDiv">A</div>
+         <!--icon-->
+         
+         
+        <span id="genera" class="material-symbols-outlined">swap_horizontal_circle</span>
+        <div id="clicca" class = "popup"><p >CLICCA PER CAMBIARE LETTERA</p></div>
+        <span id="done" class="material-symbols-outlined">done</span>
+        <span id="wrong" class="material-symbols-outlined">
+          close
+          </span>
+        <div id="letterDiv"></div>
+      </div>
+      <div id="sxContainer">
+        <canvas id="output_canvas" width="622px" height="415px"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+<footer>Progetto a cura di Alice Vitali - Tesi di Laurea Triennale in Informatica Umanistica (a.s. 2021/2022)</footer>
+</html>
+
+
+
+<script type="module">
+
+const videoElement = document.getElementById('input_video');
+const canvasElement = document.getElementById('output_canvas');
+const canvasCtx = canvasElement.getContext('2d');
+//show letter on canvas
+const letterDiv = document.getElementById("letterDiv");
+const genera = document.getElementById("genera");
+const targetDiv = document.getElementById("targetDiv");
+const clicca = document.getElementById("clicca");
+const done = document.getElementById("done");
+const wrong = document.getElementById("wrong");
+//list of class names
+const classNames = ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'T', 'U', 'V', 'W', 'X', 'Y'];
+var tries4oneletter = [];
+
+
+
+
+genera.addEventListener('click', function() {
+  const randomElement = classNames[Math.floor(Math.random() * classNames.length)];
+  if (targetDiv.hasChildNodes()) {
+    targetDiv.removeChild(targetDiv.lastChild);
+  }
+  targetDiv.append(randomElement);
+
+});
+
+
+function results(results) {
+  //console.log(results);
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+  const emptyDetection = [];
+  //SE NON SI VEDE LA MANO
+  if (results.multiHandLandmarks.length == 0) {
+     //console.log("no detections!!");
+     if (letterDiv.hasChildNodes()) {
+      letterDiv.removeChild(letterDiv.firstChild);
+    }
+    letterDiv.style.border = "5px solid black";
+    targetDiv.style.border = "5px solid black";
+    done.style.display = "none";
+    wrong.style.display = "none";
+
+  }
+  //SE INVECE SI VEDE LA MANO
+  else {
+    letterDiv.style.display= "block";
+    for (const landmarks of results.multiHandLandmarks) {
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                     {color: 'indigo', lineWidth: 5});
+      drawLandmarks(canvasCtx, landmarks, {color: 'blue', lineWidth: 2});
+      //console.log(landmarks, typeof(landmarks));
+      var all = [] 
+      for (const land of landmarks) {
+        //land è un singolo landmark dei 21 con 3 coord
+        //console.log(land);
+        const coords = Object.values(land);
+        //pop visibility, always 0
+        coords.pop();
+        //console.log(coords);
+        all.push(coords);
+      }
+    //matrice di 63 (tutti 21 landmarks di una immagine, 3 coords ognuno )
+    const matrix= all.flat(1);
+    //expand dim
+    const tensor = tf.expandDims(matrix, 0);
+    //predict with my letter model
+    const myresult = mymodel.predict(tensor);
+    var predictedValue = myresult.arraySync()[0];
+    //get highest index between predictions
+    const best = tf.argMax(predictedValue);
+    //map highest index with corresponding letter
+    const letter = best.arraySync();
+    //voilà!
+    //console.log("the first predicted letter is", classNames[letter]);
+  
+    var lett = classNames[letter];
+
+    if (letterDiv.hasChildNodes()) {
+      letterDiv.removeChild(letterDiv.firstChild);
+    }
+    //SHOW LETTER OVER CANVAS
+    letterDiv.append(lett);
+    //CONTROLLA SE LETTERA FATTA CORRISPONDE A TARGET
+    var randEl = targetDiv.innerHTML;
+    var confronta = letterDiv.innerHTML;
+    if (randEl != null) {
+      targetDiv.style.border = "5px solid black";
+      letterDiv.style.border = " 5px solid black";
+      done.style.display = "none";
+      wrong.style.display = "none";
+      //se lettere uguali
+      if (confronta == randEl) {
+        targetDiv.style.border = "5px solid green";
+        letterDiv.style.border = "5px solid green";
+        done.style.display = "block";
+      //se lettere diverse diverse
+      } else {
+        targetDiv.style.border = "5px solid red";
+        letterDiv.style.border = "5px solid red";
+        wrong.style.display = "block";
+      
+      }
+
+
+    }
+  }
+  canvasCtx.restore();
+  }
+}
+
+
+
+
+
+
+
+const hands = new Hands({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+}});
+hands.setOptions({
+    maxNumHands: 1,
+    modelComplexity: 1,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5
+});
+
+hands.onResults(results);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await hands.send({image: videoElement});
+  },
+  width: 622,
+  height: 415,
+
+});
+camera.start();
+
+let mymodel;
+videoElement.addEventListener("loadeddata", async () => {
+  //così va
+    mymodel = await tf.loadLayersModel("https://raw.githubusercontent.com/Vitalicecila/TENSORmodel/main/model.json");
+    console.log(mymodel);
+    
+});
+</script>
